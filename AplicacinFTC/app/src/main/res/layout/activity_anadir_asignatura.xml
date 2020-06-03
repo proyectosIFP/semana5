@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundGravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Activities.AnadirAsignaturaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="#72AEAEAE"
+        android:orientation="vertical"
+        >
+
+
+    <EditText
+        android:id="@+id/textviewAddNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/textviewAddCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Curso"
+        android:inputType="text"
+        android:digits="12345678901234567890"
+        />
+
+    <EditText
+        android:id="@+id/textviewAddDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Descripción"
+        android:inputType="text"
+        />
+
+    <Button
+        android:id="@+id/buttonAddFotoAsignatura"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="INSERTAR FOTO DE PERFIL"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonAddAsignatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="Añadir Asignatura"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

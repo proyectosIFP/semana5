@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "165572449214",
+    "firebase_url": "https://aplicacinftc.firebaseio.com",
+    "project_id": "aplicacinftc",
+    "storage_bucket": "aplicacinftc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165572449214:android:d226a2213531b00e3f5fef",
+        "android_client_info": {
+          "package_name": "com.example.aplicacinftc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165572449214-0jmeaa1imnbuh66gbgt52hait1d5n89v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aplicacinftc",
+            "certificate_hash": "f6ac1682afc69ef0c8fd22245e17d7d8eac8512a"
+          }
+        },
+        {
+          "client_id": "165572449214-uoqn1sqc438t43o76o5qai5t6ma4tpe2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjDuRM1quFUc1fCxEeXwyk50mVi7DIH00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165572449214-uoqn1sqc438t43o76o5qai5t6ma4tpe2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buttonLogout"
+    android:layout_width="90dp"
+    android:layout_height="30dp"
+    android:background="@color/colorPrimary"
+    android:textColor="@android:color/white"
+    android:text="Logout" />

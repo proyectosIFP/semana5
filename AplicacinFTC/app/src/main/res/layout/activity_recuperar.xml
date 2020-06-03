@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".Activities.RecuperarActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLogin"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="#72AEAEAE"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/emailResetear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/buttonResetarContra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorAccent"
+            android:text="RESETEAR CONTRASEÑA"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/buttonLoginUserLlamarSegundo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="INICIAR SESION"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</LinearLayout>
