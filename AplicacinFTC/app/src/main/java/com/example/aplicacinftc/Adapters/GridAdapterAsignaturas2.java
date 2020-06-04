@@ -42,7 +42,7 @@ public class GridAdapterAsignaturas2 extends BaseAdapter {
     private ArrayList<String> asignaturas;
     private Boolean crear = false;
 
-
+    private    ViewHolder holder;
     public GridAdapterAsignaturas2(Context context, int layout, List<Asignaturas> list) {
         this.context = context;
         this.layout = layout;
@@ -67,7 +67,7 @@ public class GridAdapterAsignaturas2 extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
-        ViewHolder holder;
+
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -92,7 +92,7 @@ public class GridAdapterAsignaturas2 extends BaseAdapter {
             // Y asÃ­, reciclamos su uso sin necesidad de buscar de nuevo, referencias con FindViewById
             holder = (ViewHolder) convertView.getTag();
         }
-        Resources res = context.getResources();
+        final Resources res = context.getResources();
 
         asignaturas =holder.Iniciado.getAsignaturas();
 
@@ -101,19 +101,45 @@ public class GridAdapterAsignaturas2 extends BaseAdapter {
         holder.nombreItem.setText(currentUser.getNombre());
         holder.cursoItem.setText(currentUser.getCurso());
 
-        getReunionesFromFirebase();
+        mDataBase.child("Reuniones").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        for(int i=0;i<todosReuniones.size();i++) {
-            for (int j = 0; j < asignaturas.size(); j++) {
-                if (holder.Iniciado.getGrupo().equals(todosReuniones.get(i).getSolicitado()) && holder.Iniciado.getAsignaturas().get(j).equals(todosReuniones.get(i).getNombreAsig())) {
-                    Drawable drawable2 = ResourcesCompat.getDrawable(res, R.drawable.radius2, null);
-                    holder.shape.setBackground(drawable2);
-                } else {
-                    Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.radius, null);
-                    holder.shape.setBackground(drawable);
+                if (dataSnapshot.exists()) {
+                    todosReuniones.clear();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String nombreAsig = ds.child("nombreAsig").getValue().toString();
+                        String solicitado = ds.child("solicitado").getValue().toString();
+                        String id = ds.getKey();
+
+
+                        Reunion reu = new Reunion(nombreAsig, solicitado, id);
+                        todosReuniones.add(reu);
+                    }
+
+                    /*for(int i=0;i<todosReuniones.size();i++) {
+                        for (int j = 0; j < asignaturas.size(); j++) {
+                            if (holder.Iniciado.getGrupo().equals(todosReuniones.get(i).getSolicitado()) && holder.Iniciado.getAsignaturas().get(j).equals(todosReuniones.get(i).getNombreAsig())) {
+                                Drawable drawable2 = ResourcesCompat.getDrawable(res, R.drawable.radius2, null);
+                                holder.shape.setBackground(drawable2);
+                            } else {
+                                Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.radius, null);
+                                holder.shape.setBackground(drawable);
+                            }
+                        }
+                    }*/
+
                 }
+
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
 
 

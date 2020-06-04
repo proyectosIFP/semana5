@@ -96,7 +96,7 @@ public class reunionesFragment extends Fragment {
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AlertDialog.Builder siNo = new AlertDialog.Builder(getContext());
                 siNo.setCancelable(true);
@@ -111,11 +111,12 @@ public class reunionesFragment extends Fragment {
                                 asigUser = asigMostrar.getNombre();
 
                                 Reunion reunion = new Reunion(asigUser, grupoUser, idreunion);
-
+                                crear=true;
                                 for(int i=0;i<todosReuniones.size();i++){
                                     if(todosReuniones.get(i).getNombreAsig().equals(reunion.getNombreAsig())&&todosReuniones.get(i).getSolicitado().equals(reunion.getSolicitado())){
                                         crear=false;
-                                            break;
+                                        idreunion=todosReuniones.get(i).getId();
+                                        break;
                                     }else{
                                         crear=true;
 
@@ -129,6 +130,7 @@ public class reunionesFragment extends Fragment {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(getContext(), "REUNION CREADA", Toast.LENGTH_SHORT).show();
+                                                view.setBackgroundColor(Color.GREEN);
 
                                             } else {
                                                 Toast.makeText(getContext(), "ERROR AL CREAR", Toast.LENGTH_SHORT).show();
@@ -136,8 +138,9 @@ public class reunionesFragment extends Fragment {
                                         }
                                     });
                                 }else{
-                                    mDataBase.child("Reuniones").child(todosReuniones.get(position).getId()).removeValue();
+                                    mDataBase.child("Reuniones").child(idreunion).removeValue();
                                     adapterGridView.notifyDataSetChanged();
+                                    view.setBackgroundColor(Color.BLUE);
 
                                     Toast.makeText(getContext(), "REUNION ELIMINADA", Toast.LENGTH_SHORT).show();
                                     getReunionesFromFirebase();
@@ -257,7 +260,7 @@ public class reunionesFragment extends Fragment {
                     }
                     for (int i = 0;i<todosAsig.size(); i++) {
 
-                       for(int j = 0;j<asignaturas.size();j++){
+                        for(int j = 0;j<asignaturas.size();j++){
                             if(todosAsig.get(i).getNombre().equals(asignaturas.get(j))){
                                 userAsig.add(todosAsig.get(i));
                             }

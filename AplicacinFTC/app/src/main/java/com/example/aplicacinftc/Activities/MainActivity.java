@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.aplicacinftc.Fragments.gestionarFragment;
@@ -114,13 +115,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.menu_gestionar:
-                        fragment = new gestionarFragment();
-                        fragmentTransaction = true;
+
+                        if(GlobalInfo.UsuarioIniciado.getRol().equalsIgnoreCase("alumno")){
+                            Toast.makeText(getApplication(), "No puedes acceder aqui", Toast.LENGTH_SHORT).show();
+                        }else{
+                            fragment = new gestionarFragment();
+                            fragmentTransaction = true;
+                        }
 
                         break;
                     case R.id.menu_reuniones:
-                        fragment = new reunionesFragment();
-                        fragmentTransaction = true;
+                        if(GlobalInfo.UsuarioIniciado.getGrupo().equalsIgnoreCase("sin grupo")){
+                            Toast.makeText(getApplication(), "No puedes acceder aqui", Toast.LENGTH_SHORT).show();
+                        }else {
+                            fragment = new reunionesFragment();
+                            fragmentTransaction = true;
+                        }
 
                         break;
                     case R.id.menu_modificar:

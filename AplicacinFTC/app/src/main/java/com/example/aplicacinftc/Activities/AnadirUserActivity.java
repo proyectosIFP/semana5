@@ -133,6 +133,7 @@ public class AnadirUserActivity extends AppCompatActivity {
                 }
 
         if(editar){
+            spinnerRol.setVisibility(View.INVISIBLE);
             mDataBase.child("Users").child(idUsuario).addValueEventListener(new ValueEventListener() {
 
                 @Override
@@ -140,9 +141,11 @@ public class AnadirUserActivity extends AppCompatActivity {
                  String nombreE = dataSnapshot.child("nombre").getValue().toString();
                  String apellidosE = dataSnapshot.child("apellidos").getValue().toString();
                  String edadE = dataSnapshot.child("edad").getValue().toString();
+
                  editnombre.setText(nombreE);
                  editapellido.setText(apellidosE);
                  editedad.setText(edadE);
+
                 }
                 @Override
                  public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -166,6 +169,40 @@ public class AnadirUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(editar){
+
+                    nombre = editnombre.getText().toString();
+                    apellido = editapellido.getText().toString();
+                    edad = editedad.getText().toString();
+                    grupo = spinnerGrupo.getSelectedItem().toString();
+                    asignaturas = new ArrayList<String>();
+                    CheckBox cb;
+                    TextView tv;
+                    //ListView mainListView = getListView();
+                    for (int x = 0; x<listView.getChildCount();x++){
+                        cb = (CheckBox)listView.getChildAt(x).findViewById(R.id.checkBox);
+                        tv = (TextView) listView.getChildAt(x).findViewById(R.id.listviewNombreAsig);
+                        if(cb.isChecked()){
+                            String add = tv.getText().toString();
+                            for(int i =0; i<asigs.size();i++){
+                                if (add.equals(asigs.get(i).getNombre())){
+                                    asignaturas.add(asigs.get(i).getNombre());
+                                }
+                            }
+
+                        }
+                    }
+
+                    if(!nombre.isEmpty()&&!apellido.isEmpty()&&!edad.isEmpty()) {
+                        mDataBase.child("Users").child(idUsuario).child("nombre").setValue(nombre);
+                        mDataBase.child("Users").child(idUsuario).child("apellidos").setValue(apellido);
+                        mDataBase.child("Users").child(idUsuario).child("edad").setValue(edad);
+                        mDataBase.child("Users").child(idUsuario).child("grupo").setValue(grupo);
+                        mDataBase.child("Users").child(idUsuario).child("asignaturas").setValue(asignaturas);
+                        Toast.makeText(getApplication(), "COMPLETADO", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        Toast.makeText(getApplication(), "COMPLETE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+                    }
 
                 }else {
                     crearUser();
